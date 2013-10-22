@@ -45,4 +45,4 @@ happen on the first connected contact.
 Probably. Patches welcome! :)
 
 [znc]: http://znc.in/
-[minbif]: http://minbif.im.
+[minbif]: http://minbif.im
