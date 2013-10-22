@@ -10,6 +10,10 @@ alphanumerical garbage.
 There are quite a few irssi, or weechat, scripts to automatically rename them
 to something less ugly.  This module does the same thing directly from ZNC.
 
+If you're using [BitlBee][bitlbee] rather than Minbif, take a look at draggy's
+[znc-perl-bitlbee-facebook-rename][bitlbee_module], from which most of this code
+is derived. :)
+
 # Requirements
 
   * ZNC (tested at version >= 1.0), compiled with Perl support.
@@ -45,4 +49,6 @@ happen on the first connected contact.
 Probably. Patches welcome! :)
 
 [znc]: http://znc.in/
-[minbif]: http://minbif.im
+[minbif]: http://minbif.im/
+[bitlbee]: http://www.bitlbee.org/
+[bitlbee_module]: https://github.com/draggy/znc-perl-bitlbee-facebook-rename
