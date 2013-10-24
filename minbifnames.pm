@@ -6,7 +6,7 @@ use Encode qw(decode);
 use strict;
 
 sub description {
-    "Name Facebook and Google Chat users correcty in minbif roster."
+    "Use Facebook and Google-Chat full names in Minbif."
 }
 
 sub minbif_channel { "&minbif" }
@@ -74,21 +74,29 @@ sub social_network_name {
   return 'unknown';
 }
 
-# Make an acceptable IRC nick from a name, example:
+# Make an acceptable IRC nick from a name. The notion of "acceptable" greatly
+# varies between individuals, so here's what is done here:
 #
-#   "Kévin de la Tour" becomes "Kevin_de_la_Tour"
+#   - Trim eventual surrounding space characters,
+#   - use a single underscore (_) instead of consecutive spaces,
+#   - transliterate non-roman UTF-8 characters to US-ASCII,
+#   - and finally strip every non-alphanumerical character (plus _ and -).
+#
+# Examples:
+#   "John Smith"            -> "John_Smith"
+#   "Jean-Kévin de la Tour" -> "Jean-Kevin_de_la_Tour"
+#   "Mike R.   "            -> "Mike_R"
 sub munge_nick {
   my ($nick) = @_;
 
-  $nick = decode('utf8', $nick);
-  $nick =~ s/[- ]/_/g;
+  $nick = trim(decode('utf8', $nick));
+  $nick =~ s/\s+/_/g;
   $nick = unidecode($nick);
   $nick =~ s/[^A-Za-z0-9_-]//g;
 
   return $nick;
 }
 
-# Trimming strings...
 sub trim {
   my ($str) = @_;
 
